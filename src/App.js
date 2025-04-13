@@ -30,6 +30,19 @@ function App() {
       backgroundImage: `url(${background})`
     }}>
 
+      <div className='top'>
+        <div className='title'>
+          <h1>Jamming Monster</h1>
+        </div>
+        <div className='subtitle'>
+          <h3>Choose a song to start</h3>
+        </div>
+        <div className='songs'>
+          <div className='songone' onClick={() => handleChooseSong(1)}><p>Song One</p></div>
+          <div className='songtwo' onClick={() => handleChooseSong(2)}><p>Song Two</p></div>
+        </div>
+      </div>
+
     </div>
   );
 }
