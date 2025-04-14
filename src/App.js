@@ -1,6 +1,6 @@
 import './App.css';
 
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const sound = ['/assets/g2.wav', '/assets/g3.wav', '/assets/a2.wav', '/assets/a3.wav', '/assets/c3.wav', '/assets/c4.wav', '/assets/d3.wav', '/assets/d4.wav', '/assets/e3.wav', '/assets/e4.wav'];
 const songs = ['/assets/song1.mp3', '/assets/song2.mp3'];
@@ -24,6 +24,11 @@ function App() {
 
   useEffect(() => {
     if (selectedSongIndex !== null) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+
       const audio = new Audio(songs[selectedSongIndex]);
       audioRef.current = audio;
       audio.play();
@@ -65,18 +70,24 @@ function App() {
 
         <div className='songs'>
           <div
-            className={`song-btn ${selectedSongIndex === 0 ? 'active' : ''}`}
+            className={`song ${selectedSongIndex === 0 ? 'active' : ''}`}
             onClick={() => handleChooseSong(0)}
           >
             <p className='songone'>Song One</p>
           </div>
           <div
-            className={`song-btn ${selectedSongIndex === 1 ? 'active' : ''}`}
+            className={`song ${selectedSongIndex === 1 ? 'active' : ''}`}
             onClick={() => handleChooseSong(1)}
           >
             <p className='songtwo'>Song Two</p>
           </div>
         </div>
+
+        {!isFirstPage && (
+          <div className="back" onClick={refreshPage}>
+            Go Back
+          </div>
+        )}
       </div>
 
     </div>
