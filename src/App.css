@@ -50,4 +50,5 @@ body {
   border: black solid 3px;
   border-radius: 8px;
   padding: 12px 48px;
+  cursor: pointer;
 }
