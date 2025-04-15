@@ -60,6 +60,8 @@ function App() {
         audio.play().catch((error) => {
           console.warn('Play interrupted:', error);
         });
+        audio.onended = () => {
+        };
       }
     };
 
@@ -68,10 +70,10 @@ function App() {
         keysDown[e.key] = false;
         setIsGActive(false);
 
-        if (gAudioRef.current) {
-          gAudioRef.current.pause();
-          gAudioRef.current.currentTime = 0;
-        }
+        // if (gAudioRef.current) {
+        //   gAudioRef.current.pause();
+        //   gAudioRef.current.currentTime = 0;
+        // }
       }
     };
 
@@ -105,6 +107,8 @@ function App() {
         audio.play().catch((error) => {
           console.warn('Play interrupted:', error);
         });
+        audio.onended = () => {
+        };
       }
     };
 
@@ -113,10 +117,10 @@ function App() {
         keysDown[e.key] = false;
         setIsAActive(false);
 
-        if (gAudioRef.current) {
-          gAudioRef.current.pause();
-          gAudioRef.current.currentTime = 0;
-        }
+        // if (gAudioRef.current) {
+        //   gAudioRef.current.pause();
+        //   gAudioRef.current.currentTime = 0;
+        // }
       }
     };
 
@@ -150,6 +154,8 @@ function App() {
         audio.play().catch((error) => {
           console.warn('Play interrupted:', error);
         });
+        audio.onended = () => {
+        };
       }
     };
 
@@ -158,10 +164,10 @@ function App() {
         keysDown[e.key] = false;
         setIsCActive(false);
 
-        if (gAudioRef.current) {
-          gAudioRef.current.pause();
-          gAudioRef.current.currentTime = 0;
-        }
+        // if (gAudioRef.current) {
+        //   gAudioRef.current.pause();
+        //   gAudioRef.current.currentTime = 0;
+        // }
       }
     };
 
@@ -195,6 +201,8 @@ function App() {
         audio.play().catch((error) => {
           console.warn('Play interrupted:', error);
         });
+        audio.onended = () => {
+        };
       }
     };
 
@@ -203,10 +211,10 @@ function App() {
         keysDown[e.key] = false;
         setIsDActive(false);
 
-        if (gAudioRef.current) {
-          gAudioRef.current.pause();
-          gAudioRef.current.currentTime = 0;
-        }
+        // if (gAudioRef.current) {
+        //   gAudioRef.current.pause();
+        //   gAudioRef.current.currentTime = 0;
+        // }
       }
     };
 
@@ -240,6 +248,8 @@ function App() {
         audio.play().catch((error) => {
           console.warn('Play interrupted:', error);
         });
+        audio.onended = () => {
+        };
       }
     };
 
@@ -248,10 +258,10 @@ function App() {
         keysDown[e.key] = false;
         setIsEActive(false);
 
-        if (gAudioRef.current) {
-          gAudioRef.current.pause();
-          gAudioRef.current.currentTime = 0;
-        }
+        // if (gAudioRef.current) {
+        //   gAudioRef.current.pause();
+        //   gAudioRef.current.currentTime = 0;
+        // }
       }
     };
 
