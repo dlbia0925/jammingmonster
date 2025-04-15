@@ -13,6 +13,8 @@ function App() {
   const [background, setBackground] = useState('/assets/firstpage.png');
   const [selectedSongIndex, setSelectedSongIndex] = useState(null);
   const audioRef = useRef(null);
+  const [isGActive, setIsGActive] = useState(false);
+  const gAudioRef = useRef(null);
 
   // const handleChooseSong = (songNumber) => {
   //   if (songNumber === 1) {
@@ -30,10 +32,56 @@ function App() {
       }
 
       const audio = new Audio(songs[selectedSongIndex]);
+      audio.loop = true;
       audioRef.current = audio;
       audio.play();
     }
   }, [selectedSongIndex]);
+
+  // G
+  useEffect(() => {
+    const keysDown = {};
+
+    const handleKeyDown = (e) => {
+      if ((e.key === 'q' || e.key === 'j') && !keysDown[e.key]) {
+        keysDown[e.key] = true;
+        setIsGActive(true);
+
+        let soundPath = '';
+        if (e.key === 'q') soundPath = sound[0]; // g2.wav
+        else if (e.key === 'j') soundPath = sound[1]; // g3.wav
+
+        const audio = new Audio(soundPath);
+        gAudioRef.current = audio;
+        audio.play().catch((error) => {
+          console.warn('Play interrupted:', error);
+        });
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      if (e.key === 'q' || e.key === 'j') {
+        keysDown[e.key] = false;
+        setIsGActive(false);
+
+        if (gAudioRef.current) {
+          gAudioRef.current.pause();
+          gAudioRef.current.currentTime = 0;
+        }
+      }
+    };
+
+    if (selectedSongIndex !== null) {
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('keyup', handleKeyUp);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [selectedSongIndex]);
+  // G
 
   const handleChooseSong = (index) => {
     setSelectedSongIndex(index);
@@ -86,6 +134,15 @@ function App() {
         {!isFirstPage && (
           <div className="back" onClick={refreshPage}>
             Go Back
+          </div>
+        )}
+
+        {selectedSongIndex !== null && (
+          <div className="g">
+            <img
+              src={isGActive ? activemon[0] : inactivemon[0]}
+              alt="G Mon"
+            />
           </div>
         )}
       </div>
