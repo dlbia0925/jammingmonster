@@ -13,8 +13,12 @@ function App() {
   const [background, setBackground] = useState('/assets/firstpage.png');
   const [selectedSongIndex, setSelectedSongIndex] = useState(null);
   const audioRef = useRef(null);
-  const [isGActive, setIsGActive] = useState(false);
   const gAudioRef = useRef(null);
+  const [isGActive, setIsGActive] = useState(false);
+  const [isAActive, setIsAActive] = useState(false);
+  const [isCActive, setIsCActive] = useState(false);
+  const [isDActive, setIsDActive] = useState(false);
+  const [isEActive, setIsEActive] = useState(false);
 
   // const handleChooseSong = (songNumber) => {
   //   if (songNumber === 1) {
@@ -83,6 +87,96 @@ function App() {
   }, [selectedSongIndex]);
   // G
 
+  // A
+  useEffect(() => {
+    const keysDown = {};
+
+    const handleKeyDown = (e) => {
+      if ((e.key === 'w' || e.key === 'i') && !keysDown[e.key]) {
+        keysDown[e.key] = true;
+        setIsAActive(true);
+
+        let soundPath = '';
+        if (e.key === 'w') soundPath = sound[2]; // a2.wav
+        else if (e.key === 'i') soundPath = sound[3]; // a3.wav
+
+        const audio = new Audio(soundPath);
+        gAudioRef.current = audio;
+        audio.play().catch((error) => {
+          console.warn('Play interrupted:', error);
+        });
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      if (e.key === 'w' || e.key === 'i') {
+        keysDown[e.key] = false;
+        setIsAActive(false);
+
+        if (gAudioRef.current) {
+          gAudioRef.current.pause();
+          gAudioRef.current.currentTime = 0;
+        }
+      }
+    };
+
+    if (selectedSongIndex !== null) {
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('keyup', handleKeyUp);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [selectedSongIndex]);
+  // A
+
+  // C
+  useEffect(() => {
+    const keysDown = {};
+
+    const handleKeyDown = (e) => {
+      if ((e.key === 'e' || e.key === 'o') && !keysDown[e.key]) {
+        keysDown[e.key] = true;
+        setIsCActive(true);
+
+        let soundPath = '';
+        if (e.key === 'e') soundPath = sound[4]; // c2.wav
+        else if (e.key === 'o') soundPath = sound[5]; // c3.wav
+
+        const audio = new Audio(soundPath);
+        gAudioRef.current = audio;
+        audio.play().catch((error) => {
+          console.warn('Play interrupted:', error);
+        });
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      if (e.key === 'e' || e.key === 'o') {
+        keysDown[e.key] = false;
+        setIsCActive(false);
+
+        if (gAudioRef.current) {
+          gAudioRef.current.pause();
+          gAudioRef.current.currentTime = 0;
+        }
+      }
+    };
+
+    if (selectedSongIndex !== null) {
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('keyup', handleKeyUp);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [selectedSongIndex]);
+  // C
+
   const handleChooseSong = (index) => {
     setSelectedSongIndex(index);
     setBackground(backgrounds[index]);
@@ -137,11 +231,32 @@ function App() {
           </div>
         )}
 
+        {/* G */}
         {selectedSongIndex !== null && (
           <div className="g">
             <img
               src={isGActive ? activemon[0] : inactivemon[0]}
               alt="G Mon"
+            />
+          </div>
+        )}
+
+        {/* A */}
+        {selectedSongIndex !== null && (
+          <div className="a">
+            <img
+              src={isAActive ? activemon[1] : inactivemon[1]}
+              alt="A Mon"
+            />
+          </div>
+        )}
+
+        {/* C */}
+        {selectedSongIndex !== null && (
+          <div className="c">
+            <img
+              src={isCActive ? activemon[2] : inactivemon[2]}
+              alt="C Mon"
             />
           </div>
         )}
