@@ -177,6 +177,96 @@ function App() {
   }, [selectedSongIndex]);
   // C
 
+  // D
+  useEffect(() => {
+    const keysDown = {};
+
+    const handleKeyDown = (e) => {
+      if ((e.key === 'r' || e.key === 'p') && !keysDown[e.key]) {
+        keysDown[e.key] = true;
+        setIsDActive(true);
+
+        let soundPath = '';
+        if (e.key === 'r') soundPath = sound[6]; // d2.wav
+        else if (e.key === 'p') soundPath = sound[7]; // d3.wav
+
+        const audio = new Audio(soundPath);
+        gAudioRef.current = audio;
+        audio.play().catch((error) => {
+          console.warn('Play interrupted:', error);
+        });
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      if (e.key === 'r' || e.key === 'p') {
+        keysDown[e.key] = false;
+        setIsDActive(false);
+
+        if (gAudioRef.current) {
+          gAudioRef.current.pause();
+          gAudioRef.current.currentTime = 0;
+        }
+      }
+    };
+
+    if (selectedSongIndex !== null) {
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('keyup', handleKeyUp);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [selectedSongIndex]);
+  // D
+
+  // E
+  useEffect(() => {
+    const keysDown = {};
+
+    const handleKeyDown = (e) => {
+      if ((e.key === 'f' || e.key === '[') && !keysDown[e.key]) {
+        keysDown[e.key] = true;
+        setIsEActive(true);
+
+        let soundPath = '';
+        if (e.key === 'f') soundPath = sound[8]; // e2.wav
+        else if (e.key === '[') soundPath = sound[9]; // e3.wav
+
+        const audio = new Audio(soundPath);
+        gAudioRef.current = audio;
+        audio.play().catch((error) => {
+          console.warn('Play interrupted:', error);
+        });
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      if (e.key === 'f' || e.key === '[') {
+        keysDown[e.key] = false;
+        setIsEActive(false);
+
+        if (gAudioRef.current) {
+          gAudioRef.current.pause();
+          gAudioRef.current.currentTime = 0;
+        }
+      }
+    };
+
+    if (selectedSongIndex !== null) {
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('keyup', handleKeyUp);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [selectedSongIndex]);
+  // E
+
   const handleChooseSong = (index) => {
     setSelectedSongIndex(index);
     setBackground(backgrounds[index]);
@@ -257,6 +347,26 @@ function App() {
             <img
               src={isCActive ? activemon[2] : inactivemon[2]}
               alt="C Mon"
+            />
+          </div>
+        )}
+
+        {/* D */}
+        {selectedSongIndex !== null && (
+          <div className="d">
+            <img
+              src={isDActive ? activemon[3] : inactivemon[3]}
+              alt="D Mon"
+            />
+          </div>
+        )}
+
+        {/* E */}
+        {selectedSongIndex !== null && (
+          <div className="e">
+            <img
+              src={isEActive ? activemon[4] : inactivemon[4]}
+              alt="E Mon"
             />
           </div>
         )}
