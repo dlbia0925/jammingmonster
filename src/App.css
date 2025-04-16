@@ -68,6 +68,30 @@ body {
 
 .g {
   position: absolute;
-  bottom: 25px;
-  left: 36px;
+  bottom: 10px;
+  left: 32px;
+}
+
+.a {
+  position: absolute;
+  bottom: 480px;
+  left: 310px;
+}
+
+.d {
+  position: absolute;
+  bottom: 36px;
+  right: 150px;
+}
+
+.e {
+  position: absolute;
+  top: 140px;
+  right: 64px;
+}
+
+.c {
+  position: absolute;
+  bottom: 110px;
+  right: 680px;
 }
