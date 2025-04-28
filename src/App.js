@@ -28,7 +28,7 @@ const songs = [
 
 const inactivemon = [
   process.env.PUBLIC_URL + '/assets/g_inactive.png',
-  process.env.PUBLIC_URL + '/assets/a_inactive.png', 
+  process.env.PUBLIC_URL + '/assets/a_inactive.png',
   process.env.PUBLIC_URL + '/assets/c_inactive.png',
   process.env.PUBLIC_URL + '/assets/d_inactive.png',
   process.env.PUBLIC_URL + '/assets/e_inactive.png'
@@ -36,9 +36,9 @@ const inactivemon = [
 
 const activemon = [
   process.env.PUBLIC_URL + '/assets/g_active.png',
-  process.env.PUBLIC_URL + '/assets/a_active.png', 
-  process.env.PUBLIC_URL + '/assets/c_active.png', 
-  process.env.PUBLIC_URL + '/assets/d_active.png', 
+  process.env.PUBLIC_URL + '/assets/a_active.png',
+  process.env.PUBLIC_URL + '/assets/c_active.png',
+  process.env.PUBLIC_URL + '/assets/d_active.png',
   process.env.PUBLIC_URL + '/assets/e_active.png'
 ];
 
@@ -367,6 +367,15 @@ function App() {
         {!isFirstPage && (
           <div className="back" onClick={refreshPage}>
             Go Back
+          </div>
+        )}
+
+        {!isFirstPage && (
+          <div className="hotkey">
+            <img
+              src={process.env.PUBLIC_URL + '/assets/hotkeys.png'}
+              alt=""
+            />
           </div>
         )}
 
