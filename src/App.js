@@ -2,15 +2,54 @@ import './App.css';
 
 import React, { useState, useEffect, useRef } from 'react';
 
-const sound = ['/assets/g2.wav', '/assets/g3.wav', '/assets/a2.wav', '/assets/a3.wav', '/assets/c3.wav', '/assets/c4.wav', '/assets/d3.wav', '/assets/d4.wav', '/assets/e3.wav', '/assets/e4.wav'];
-const songs = ['/assets/song1.mp3', '/assets/song2.mp3'];
-const inactivemon = ['/assets/g_inactive.png', '/assets/a_inactive.png', '/assets/c_inactive.png', '/assets/d_inactive.png', '/assets/e_inactive.png'];
-const activemon = ['/assets/g_active.png', '/assets/a_active.png', '/assets/c_active.png', '/assets/d_active.png', '/assets/e_active.png'];
-const backgrounds = ['/assets/bg1.png', '/assets/bg2.png'];
+// const sound = ['/assets/g2.wav', '/assets/g3.wav', '/assets/a2.wav', '/assets/a3.wav', '/assets/c3.wav', '/assets/c4.wav', '/assets/d3.wav', '/assets/d4.wav', '/assets/e3.wav', '/assets/e4.wav'];
+// const songs = ['/assets/song1.mp3', '/assets/song2.mp3'];
+// const inactivemon = ['/assets/g_inactive.png', '/assets/a_inactive.png', '/assets/c_inactive.png', '/assets/d_inactive.png', '/assets/e_inactive.png'];
+// const activemon = ['/assets/g_active.png', '/assets/a_active.png', '/assets/c_active.png', '/assets/d_active.png', '/assets/e_active.png'];
+// const backgrounds = ['/assets/bg1.png', '/assets/bg2.png'];
+
+const sound = [
+  process.env.PUBLIC_URL + '/assets/g2.wav',
+  process.env.PUBLIC_URL + '/assets/g3.wav',
+  process.env.PUBLIC_URL + '/assets/a2.wav',
+  process.env.PUBLIC_URL + '/assets/a3.wav',
+  process.env.PUBLIC_URL + '/assets/c3.wav',
+  process.env.PUBLIC_URL + '/assets/c4.wav',
+  process.env.PUBLIC_URL + '/assets/d3.wav',
+  process.env.PUBLIC_URL + '/assets/d4.wav',
+  process.env.PUBLIC_URL + '/assets/e3.wav',
+  process.env.PUBLIC_URL + '/assets/e4.wav',
+];
+
+const songs = [
+  process.env.PUBLIC_URL + '/assets/song1.mp3',
+  process.env.PUBLIC_URL + '/assets/song2.mp3'
+];
+
+const inactivemon = [
+  process.env.PUBLIC_URL + '/assets/g_inactive.png',
+  process.env.PUBLIC_URL + '/assets/a_inactive.png', 
+  process.env.PUBLIC_URL + '/assets/c_inactive.png',
+  process.env.PUBLIC_URL + '/assets/d_inactive.png',
+  process.env.PUBLIC_URL + '/assets/e_inactive.png'
+];
+
+const activemon = [
+  process.env.PUBLIC_URL + '/assets/g_active.png',
+  process.env.PUBLIC_URL + '/assets/a_active.png', 
+  process.env.PUBLIC_URL + '/assets/c_active.png', 
+  process.env.PUBLIC_URL + '/assets/d_active.png', 
+  process.env.PUBLIC_URL + '/assets/e_active.png'
+];
+
+const backgrounds = [
+  process.env.PUBLIC_URL + '/assets/bg1.png',
+  process.env.PUBLIC_URL + '/assets/bg2.png'
+];
 
 function App() {
 
-  const [background, setBackground] = useState('/assets/firstpage.png');
+  const [background, setBackground] = useState(process.env.PUBLIC_URL + '/assets/firstpage.png');
   const [selectedSongIndex, setSelectedSongIndex] = useState(null);
   const audioRef = useRef(null);
   const gAudioRef = useRef(null);
@@ -284,14 +323,14 @@ function App() {
 
   const refreshPage = () => {
     setSelectedSongIndex(null);
-    setBackground('/assets/firstpage.png');
+    setBackground(process.env.PUBLIC_URL + '/assets/firstpage.png');
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
   };
 
-  const isFirstPage = background === '/assets/firstpage.png';
+  const isFirstPage = background === process.env.PUBLIC_URL + '/assets/firstpage.png';
 
   return (
     <div className='firstpage' style={{
